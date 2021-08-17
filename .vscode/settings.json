@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.eol": "\n",
+  "prettier.configPath": ".prettierrc.js",
+  // "[vue]": {
+  //   "editor.defaultFormatter": null
+  // },
+  // "[css]": {
+  //   "editor.defaultFormatter": null
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": null
+  // }
+}
