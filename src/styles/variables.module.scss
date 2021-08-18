@@ -1,0 +1,15 @@
+// 导出css变量（默认推荐使用 css 自带:root变量）
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+@import 'src/styles/design/screen.scss';
+
+:export {
+  menuText: var(--layout-siderbar-color);
+  menuActiveText: var(--color-primary);
+  subMenuActiveText: var(--color-primary);
+  menuBg: var(--layout-siderbar-bg);
+  menuHover: rgba(var(--color-primary-rgb), 0.1);
+  subMenuBg: var(--layout-siderbar-bg);
+  subMenuHover: rgba(var(--color-primary-rgb), 0.1);
+  sideBarWidth: var(--layout-siderbar-width);
+}

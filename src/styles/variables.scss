@@ -1,0 +1,35 @@
+/* 主题色变量 */
+$color-primary: #0052d9; // primary
+$color-success: #00a870; // success
+$color-warning: #ed7b2f; // warning
+$color-danger: #e34d59; // danger
+$color-info: #909399; // info
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-rgb: 0, 82, 217;
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-danger: #{$color-danger};
+  --color-info: #{$color-info};
+  --layout-header-height: 48px;
+  --layout-siderbar-width: 208px;
+  --layout-bg: #fff;
+  --layout-siderbar-bg: #f5f7fa;
+  --layout-siderbar-color: #303133;
+  --layout-header-bg: var(--color-primary);
+  --layout-header-boxShadow: 0 4px 8px rgb(0 0 0 / 12%);
+  --layout-siderbar-boxShadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+  --layout-footer-height: 100px;
+  --layout-content-height: calc(
+    100vh - var(--layout-header-height) - var(--layout-footer-height) -
+    var(--layout-breadcrumb-height)
+  );
+  // --el-color-primary: red;
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --layout-siderbar-width: 240px;
+  }
+}

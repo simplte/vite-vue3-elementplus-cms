@@ -1,0 +1,17 @@
+/* 单行文本超出省略号显示 */
+@mixin textOverflowEllipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @content;
+}
+
+/* css 文本多行显示，超出省略号表示 */
+@mixin multipleTextOverflowEllipsis($lineClamp: 3) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lineClamp;
+  line-clamp: $lineClamp;
+  -webkit-box-orient: vertical;
+  @content;
+}

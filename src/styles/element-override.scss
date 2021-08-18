@@ -1,0 +1,18 @@
+// element-plus组件覆盖样式
+.el-input__inner {
+  // 去除type=number的上下箭头
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield !important;
+    line-height: 1;
+  }
+}
+
+.el-icon-arrow-down::before {
+  // 设置颜色选择器箭头颜色
+  color: #999;
+}

@@ -5,7 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 // 兼容传统浏览器
 import legacyPlugin from '@vitejs/plugin-legacy';
 
-export function createVitePlugins(viteEnv, isBuild) {
+export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
   const vitePlugins: (Plugin | Plugin[])[] = [
     // 必须
     vue(),
