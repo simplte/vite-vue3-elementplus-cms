@@ -1,27 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <router-view />
+  <!-- eslint-disable @typescript-eslint/semi -->
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
+  setup() {},
 });
 </script>
-
-<style lang='sass' scoped>
-$primary-color: red
-#app
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: $primary-color
-  margin-top: 60px
-</style>
