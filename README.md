@@ -7,7 +7,7 @@
 - 支持 elemetplus
 - axios
 - sass
-- vue-router
+- vue-router done
 - vuex
 - mock
 - jest

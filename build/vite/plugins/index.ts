@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 // 兼容传统浏览器
 import legacyPlugin from '@vitejs/plugin-legacy';
+import { svgBuilder } from '../../svgBuilder';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -21,6 +22,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
         'Edge >= 15',
       ],
     }),
+    svgBuilder('./src/assets/svg/'),
   ];
   return vitePlugins;
 }
