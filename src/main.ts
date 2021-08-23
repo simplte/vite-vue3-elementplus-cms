@@ -1,9 +1,8 @@
+import './styles/main.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router, { setupRouter } from './router';
 import { setElement, setupComponents } from './plugins/index';
-
-import './styles/main.scss';
 
 const app = createApp(App);
 (window as any).global = window;

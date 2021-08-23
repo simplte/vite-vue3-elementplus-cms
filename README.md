@@ -4,9 +4,9 @@
 
 ### todolist
 
-- 支持 elemetplus
+- 支持 elemetplus done
 - axios
-- sass
+- sass done
 - vue-router done
 - vuex
 - mock
