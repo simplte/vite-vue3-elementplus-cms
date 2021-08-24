@@ -5,10 +5,10 @@
 ### todolist
 
 - 支持 elemetplus done
-- axios
+- axios done
 - sass done
 - vue-router done
-- vuex
+- vuex done
 - mock
 - jest
 - eslint+prettier+stylelint
