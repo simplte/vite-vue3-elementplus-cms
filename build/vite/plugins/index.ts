@@ -5,6 +5,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 // 兼容传统浏览器
 import legacyPlugin from '@vitejs/plugin-legacy';
 import { svgBuilder } from '../../svgBuilder';
+import { configHmrPlugin } from './hmr';
+import { configHtmlPlugin } from './html';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -24,5 +26,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
     }),
     svgBuilder('./src/assets/svg/'),
   ];
+  // 配置 HMR 插件
+  !isBuild && vitePlugins.push(configHmrPlugin());
+  // vite-plugin-html
+  vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
   return vitePlugins;
 }

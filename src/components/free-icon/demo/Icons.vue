@@ -1,9 +1,9 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>FreeIcon组件</span>
     </template>
-    <div style="font-size: 14px;">具体使用说明，请查看FreeIcon/README.md</div>
+    <div style="font-size: 14px">具体使用说明，请查看FreeIcon/README.md</div>
     <ul class="icon-list usage-list">
       <li>
         <span>
@@ -26,7 +26,7 @@
     </ul>
   </el-card>
 
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>Svg Icon图标</span>
     </template>

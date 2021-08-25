@@ -3,11 +3,12 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { AppRouteRecordRaw } from './types';
 import { DemoRoutes } from './modules/demo';
 import { DefaultRoutes } from './modules/default';
+import { ErrorRoutes } from './modules/error';
 
 import { createRouterGuard } from './guard';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const routes: Array<AppRouteRecordRaw> = [...DefaultRoutes, ...DemoRoutes];
+export const routes: Array<AppRouteRecordRaw> = [...DefaultRoutes, ...DemoRoutes, ...ErrorRoutes];
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const router = createRouter({
