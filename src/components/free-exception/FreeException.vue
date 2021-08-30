@@ -1,7 +1,7 @@
 <template>
   <div class="oops">
     <div class="error-text">
-      <img :src="dynamicIcon" />
+      <!-- <img :src="dynamicIcon" /> -->
       <span>{{ title }}</span>
       <p>{{ description }}</p>
       <a v-if="showBtn" class="back" @click="onClick">
@@ -55,11 +55,11 @@ export default defineComponent({
       }
     };
 
-    const dynamicIcon = computed(() => require(`@/assets/images/error/${props.icon}.svg`));
+    // const dynamicIcon = computed(() => require(`@/assets/images/error/${props.icon}.svg`));
 
     return {
       onClick,
-      dynamicIcon,
+      // dynamicIcon,
     };
   },
 });

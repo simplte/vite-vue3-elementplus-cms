@@ -6,7 +6,7 @@ export const DemoRoutes: AppRouteRecordRaw[] = [
   {
     path: '/demo',
     name: 'Demo',
-    redirect: '/demo/table',
+    redirect: '/demo/demoPage',
     meta: {
       title: '组件案例',
       icon: 'el-icon-s-management',
@@ -17,19 +17,19 @@ export const DemoRoutes: AppRouteRecordRaw[] = [
         path: 'table',
         name: 'DemoTable',
         meta: { title: '案例表格' },
-        component: () => import('@/views/demo/Table.vue'),
+        component: () => import('@/views/demo/demoTable.vue'),
       },
       {
         path: 'form',
         name: 'DemoForm',
         meta: { title: '案例表单' },
-        component: () => import('@/views/demo/Form.vue'),
+        component: () => import('@/views/demo/demoForm.vue'),
       },
       {
-        path: 'icon',
+        path: 'demoPage',
         name: 'DemoIcon',
         meta: { title: '案例图标' },
-        component: () => import('@/views/demo/Icons.vue'),
+        component: () => import('@/views/demo/demo.vue'),
       },
     ],
   },

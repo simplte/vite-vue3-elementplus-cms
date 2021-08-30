@@ -2,7 +2,6 @@
   <div class="demo-page">{{ testData }}</div>
   <div>asdfasdf</div>
   <ElIcon name="el-icon-success" />
-  <div @click="jumpTable()">table</div>
   <div @click="jumpForm()">form</div>
 </template>
 <script lang='ts'>
@@ -22,17 +21,12 @@ export default defineComponent({
     const router = useRouter();
     console.log(123);
     ElMessage.warning('waring');
-    const jumpTable = () => {
-      console.log('table');
-      router.push('/demo/table');
-    };
     const jumpForm = () => {
       router.push('/demo/form');
     };
     let testData = ref<TestInter>({ name: 'ccc demo' });
     return {
       testData,
-      jumpTable,
       jumpForm,
     };
   },
