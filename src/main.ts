@@ -12,7 +12,6 @@ function bootstrap(app) {
   setupComponents(app);
   setupStore(app);
   setupRouter(app);
-  var a = '';
   router.isReady().then(() => app.mount('#app', true));
 }
 void bootstrap(app);
