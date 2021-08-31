@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite --mode development",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepare": "husky install",
+    "test": ""
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -40,6 +42,23 @@
     "vite-plugin-style-import": "^1.0.1",
     "vue-loader-v16": "^16.0.0-beta.5.4",
     "vite-plugin-html": "^2.0.7",
-    "babel-plugin-component": "^1.1.1"
+    "babel-plugin-component": "^1.1.1",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "prettier --write",
+      "eslint"
+    ]
   }
 }
