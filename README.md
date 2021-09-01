@@ -11,5 +11,241 @@
 - vuex done
 - mock
 - jest
-- eslint+prettier+stylelint
+- eslint+prettier+stylelint done
+- husky done
 - ...
+
+### 项目初始化笔记
+
+#### ts
+
+```
+Pick 从某个接口中选择需要的属性，且会跟随原接口变化
+
+interface Tinterface {
+  name: string;
+  age: number;
+  sex: boolean;
+}
+<!--接口-->
+interface TChild extends Pick<Tinterface, 'name' | 'age'> {}
+let testData: TChild = {
+  name: 'asdf',
+  age: 123,
+};
+<!--类型-->
+type ChildType = Pick<Tinterface, 'name' | 'age'>;
+let testChild: ChildType = {
+  name: 'asdf',
+  age: 123,
+};
+```
+
+```
+Record 定义对象指定的key和value类型
+
+type定义的 对象类型 key是string，value 是Tinterface和{scholl: string} 的联合数据 ，即value必须是包含Tinterface和{school: string}的对象
+interface Tinterface {
+  name: string;
+  age: number;
+  sex: boolean;
+}
+
+type ChildType = Record<string, Tinterface & { school: string }>;
+let childData: ChildType = {
+  name: {
+    name: '123',
+    age: 123,
+    sex: true,
+    school: '123',
+  },
+};
+```
+
+```
+omit 剔除接口的某些属性
+type User = {
+    id: string;
+    name: string;
+    sex: boolean;
+}
+type Man = Omit<User, 'sex'>
+等价于
+type Man = {
+    id: string;
+    name: string;
+}
+```
+
+```
+Parameters 的作用是用于获得函数的参数类型组成的元组类型
+```
+
+#### angular 代码提交规范 遵守 git 提交约定
+
+```
+需要安装：
+
+1：@commitlint/cli 校验提交说明是否符合规范
+
+2：@commitlint/config-conventional 安装符合Angular风格的校验规则
+需要在项目根路径下添加文件：
+.commitlintrc.js
+
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+};
+
+
+3：cz-conventional-changelog Commitizen适配器
+需要执行初始化命令生成符合angular的提交说明：
+commitizen init cz-conventional-changelog --save --save-exact
+命令做了三件事：
+    1：在项目中安装cz-conventional-changelog 适配器依赖
+    2：将适配器依赖保存到package.json的devDependencies字段信息
+    3：需要在package.json中增加config配置
+
+     "config": {
+        "commitizen": {
+          "path": "./node_modules/cz-conventional-changelog"
+        }
+      },
+
+    完成上面操作就可以使用cz的命令git cz代替git commit
+
+4：如果需要定制提交说明则需要cz-customizable
+然后在根路径新增文件.cz-config.js
+个人理解基本上不需要定制化
+module.exports = {
+  disableEmoji: false,
+  list: ['test', 'feat', 'fix', 'chore', 'docs', 'refactor', 'style', 'ci', 'perf'],
+  maxMessageLength: 64,
+  minMessageLength: 3,
+  questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
+  scopes: [],
+  types: {
+    chore: {
+      description: 'Build process or auxiliary tool changes',
+      emoji: '🤖',
+      value: 'chore',
+    },
+    ci: {
+      description: 'CI related changes',
+      emoji: '🎡',
+      value: 'ci',
+    },
+    docs: {
+      description: 'Documentation only changes',
+      emoji: '✏️',
+      value: 'docs',
+    },
+    feat: {
+      description: 'A new feature',
+      emoji: '🎸',
+      value: 'feat',
+    },
+    fix: {
+      description: 'A bug fix',
+      emoji: '🐛',
+      value: 'fix',
+    },
+    perf: {
+      description: 'A code change that improves performance',
+      emoji: '⚡️',
+      value: 'perf',
+    },
+    refactor: {
+      description: 'A code change that neither fixes a bug or adds a feature',
+      emoji: '💡',
+      value: 'refactor',
+    },
+    release: {
+      description: 'Create a release commit',
+      emoji: '🏹',
+      value: 'release',
+    },
+    style: {
+      description: 'Markup, white-space, formatting, missing semi-colons...',
+      emoji: '💄',
+      value: 'style',
+    },
+    test: {
+      description: 'Adding missing tests',
+      emoji: '💍',
+      value: 'test',
+    },
+  },
+};
+
+个人项目中完成配置安装的依赖包：
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4"
+  "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0", 我觉得这个装了没有用 不需要定制提交信息，删了一样提交
+
+全局安装的插件有：
+conventional-changelog-cli
+commitizen
+git-cz
+
+完成以上配置即可git cz 提交代码
+
+```
+
+#### husky 配置
+
+```
+1：安装husky npm install -D husky
+2：在package.json中添加prepare脚本
+"scripts": {
+    "prepare": "husky install"
+  }
+prepare脚本会在npm install（不带参数）之后自动执行
+该命令会创建.husky/目录并指定该目录为git hooks所在的目录。
+3：git hooks 添加git hook 需要执行以下命令
+
+npx husky add .husky/pre-commit "npm run test"
+执行完会创建pre-commit的shell脚本
+就是说执行完 git cz 操作之后会执行这个sh脚本
+
+脚本的功能就是执行npm run test这个命令
+npm run test的命令是可以修改的
+
+4：在项目中我们会使用commit-msg这个git hook来校验我们commit时添加的备注信息是否符合规范
+需要执行以下命令创建commit-msg sh脚本
+
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+
+5: 安装 lint-staged
+以保证提交的代码没有语法错误，不会影响项目其他文件的内容
+
+在 husky文件夹下的_文件夹中添加.lintstagedrc.js 文件 约定哪些文件会被检查
+文件内容：
+
+module.exports = {
+  'src/**/*.{js,jsx,vue,ts,tsx}': ['eslint --fix', 'git add'],
+  'src/**/*.{html,vue,css,sass,scss}': ['stylelint --fix', 'git add'],
+};
+
+6：创建common.sh保证window下提交没有问题
+内容如下：
+command_exists () {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Workaround for Windows 10, Git Bash and Yarn
+if command_exists winpty && test -t 1; then
+  exec < /dev/tty
+fi
+
+7：在pre-commit 脚本中增加
+. "$(dirname "$0")/common.sh"
+
+8：修改pre-commit 脚本中执行的命令
+npm run lint-staged
+9：package.json中增加命令
+"lint-staged": "lint-staged -c ./.husky/.lintstagedrc.js",
+
+10：安装 lint-staged
+
+```
