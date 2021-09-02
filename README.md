@@ -248,4 +248,122 @@ npm run lint-staged
 
 10：安装 lint-staged
 
+项目中安装相关的插件：
+"husky": "^7.0.1",
+"lint-staged": "^11.0.1",
 ```
+
+### stylelint 样式格式化与校验
+
+- 需要安装的插件
+
+```
+"stylelint": "^13.13.1",
+
+禁用所有与格式相关的 `Stylelint` 规则，解决 `prettier` 与 `stylelint` 规则冲突，确保将其放在 `extends` 队列最后，这样它将覆盖其他配置。
+"stylelint-config-prettier": "^8.0.2",
+
+官网提供的 css 标准
+"stylelint-config-standard": "^22.0.0",
+
+属性排列顺序
+"stylelint-order": "^4.1.0",
+"stylelint-config-recess-order": "^2.4.0",
+
+基于 `prettier` 代码风格的 `Stylelint` 规则
+"stylelint-prettier": "^1.2.0",
+```
+
+- 配置文件 `.stylelintrc.js`
+
+```
+module.exports = {
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-recess-order', // CSS property order https://markdotto.com/2011/11/29/css-property-order/
+    'stylelint-config-prettier',
+  ],
+  plugins: ['stylelint-prettier'],
+  rules: {
+    'prettier/prettier': true,
+    'rule-empty-line-before': [
+      'always-multi-line',
+      {
+        except: ['after-single-line-comment', 'first-nested'],
+      },
+    ],
+    'no-invalid-double-slash-comments': null,
+    'number-leading-zero': null,
+    'font-family-no-missing-generic-family-keyword': null,
+    'no-descending-specificity': null,
+    'declaration-empty-line-before': null,
+    'color-no-invalid-hex': true,
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['mixin', 'extend', 'content', 'include', 'for', 'function', 'return'],
+      },
+    ],
+    'property-no-unknown': [
+      true,
+      {
+        ignoreProperties: [],
+        ignoreSelectors: [':export', /^:import/],
+      },
+    ],
+    'selector-pseudo-element-no-unknown': [
+      true,
+      {
+        ignorePseudoElements: ['v-deep'],
+      },
+    ],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global', 'export', 'import', 'local', 'deep', 'mixin'],
+      },
+    ],
+    indentation: 2,
+    'no-descending-specificity': null,
+    'declaration-colon-newline-after': null,
+  },
+};
+
+```
+
+`.stylelintignore`
+
+```
+**/*.min.css
+**/dist/
+**/public/
+**/node_modules/
+```
+
+- `package.json`中创建全局样式格式化命令
+
+```
+"lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+```
+
+- 配合`husky `预提交之前检查样式格式
+
+```
+在husky文件夹_文件夹下.lintstagedrc.js脚本中新增
+'src/**/*.{html,vue,css,sass,scss}': ['stylelint --fix', 'git add'],
+```
+
+- `vscode settings.json` 增加配置
+
+```
+"css.validate": false,
+"less.validate": false,
+"scss.validate": false,
+"editor.codeActionsOnSave": {
+   "source.fixAll.stylelint": true, // 自动stylelint
+   "source.fixAll.eslint": true // 自动eslint 因为我配置的还有eslint自动化格式工具
+},
+"files.autoSaveDelay": 500
+```
+
+**至此自动格式化样式与格式预提交格式检查就 ok 了**
