@@ -353,6 +353,7 @@ module.exports = {
 'src/**/*.{html,vue,css,sass,scss}': ['stylelint --fix', 'git add'],
 ```
 
+- `vscode`下载插件`stylelint` `sass`
 - `vscode settings.json` 增加配置
 
 ```
