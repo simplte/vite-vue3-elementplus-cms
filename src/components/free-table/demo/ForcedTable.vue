@@ -1,5 +1,5 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>selection/index/expand用法</span>
     </template>

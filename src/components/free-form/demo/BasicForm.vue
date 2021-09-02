@@ -1,15 +1,15 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>基础用法</span>
     </template>
 
     <free-form
-      label-width="100px"
       ref="formRef"
+      label-width="100px"
       :model="form.model"
       :fields="form.fields"
-      :showButtons="true"
+      :show-buttons="true"
     />
   </el-card>
 </template>

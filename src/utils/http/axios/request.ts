@@ -71,7 +71,7 @@ export class AxiosRequest {
         .request<any, AxiosResponse>(config)
         .then((res: AxiosResponse) => {
           if (axios.isCancel(res)) return;
-          resolve((res as unknown) as Promise<T>);
+          resolve(res as unknown as Promise<T>);
         })
         .catch((error: Error) => reject(error));
     });

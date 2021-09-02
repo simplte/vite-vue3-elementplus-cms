@@ -73,7 +73,7 @@ export const cellForced = {
         classes.push('el-table__expand-icon--expanded');
       }
       // eslint-disable-next-line @typescript-eslint/space-before-function-paren
-      const callback = function(e) {
+      const callback = function (e) {
         e.stopPropagation();
         store.toggleRowExpansion(row);
       };

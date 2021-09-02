@@ -1,5 +1,5 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>查询用法</span>
     </template>
@@ -13,7 +13,7 @@
       :row="formQuery.row"
     >
       <template #buttons>
-        <div style="text-align: right; margin-left: 10px;">
+        <div style="text-align: right; margin-left: 10px">
           <el-button type="success" icon="el-icon-edit" @click="setQuery">查询</el-button>
           <el-button type="warning" icon="el-icon-download">导出</el-button>
         </div>

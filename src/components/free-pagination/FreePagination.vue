@@ -1,9 +1,9 @@
 <template>
   <div class="pagination-container">
     <el-pagination
-      v-bind="$attrs"
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
+      v-bind="$attrs"
       :layout="layout"
       :total="total"
       :page-sizes="pageSizes"

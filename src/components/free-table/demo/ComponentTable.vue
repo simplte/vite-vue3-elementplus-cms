@@ -1,5 +1,5 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>组件用法</span>
     </template>

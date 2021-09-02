@@ -16,9 +16,9 @@
           :class="item.className"
         >
           <component
-            v-model="getModelValue[item.prop]"
             v-bind="getComponentAttr(item)"
             :is="getComponentNode(item.type)"
+            v-model="getModelValue[item.prop]"
           >
             {{ model[item.prop] }}
           </component>

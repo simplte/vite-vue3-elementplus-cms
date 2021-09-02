@@ -1,5 +1,5 @@
 <template>
-  <el-select v-bind="$attrs" style="width: 100%;">
+  <el-select v-bind="$attrs" style="width: 100%">
     <el-option
       v-for="(item, index) in options"
       :key="item.id || index"

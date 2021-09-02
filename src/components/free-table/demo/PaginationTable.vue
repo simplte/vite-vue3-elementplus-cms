@@ -1,15 +1,15 @@
 <template>
-  <el-card style="margin: 24px;">
+  <el-card style="margin: 24px">
     <template #header>
       <span>分页功能用法</span>
     </template>
     <free-table
+      v-model:page="params.page"
+      v-model:limit="params.limit"
       pagination
       :data="tableData"
       :column="column"
       :total="total"
-      v-model:page="params.page"
-      v-model:limit="params.limit"
       @pagination="getData"
     ></free-table>
   </el-card>

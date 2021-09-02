@@ -1,7 +1,7 @@
 <template>
   <div class="free-button-operator">
     <template v-for="(item, index) in operatorItems" :key="index">
-      <el-button :key="index" v-bind="item" v-if="!item.hidden" @click="item.onClick">
+      <el-button v-if="!item.hidden" :key="index" v-bind="item" @click="item.onClick">
         {{ item.text }}
       </el-button>
     </template>

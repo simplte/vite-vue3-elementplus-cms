@@ -12,7 +12,7 @@
       </template>
 
       <template #empty>
-        <slot name="empty" v-if="$slots.empty"></slot>
+        <slot v-if="$slots.empty" name="empty"></slot>
         <el-empty v-else description="暂无数据"></el-empty>
       </template>
 

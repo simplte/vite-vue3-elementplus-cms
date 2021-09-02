@@ -4,19 +4,17 @@
   <ElIcon name="el-icon-success" />
   <div @click="jumpForm()">form</div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { ElMessageBox, ElMessage, ElForm } from 'element-plus';
+import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 export interface TestInter {
   name: string;
   age?: number;
 }
 export default defineComponent({
-  name: 'demo',
-  components: {
-    ElMessage,
-  },
+  name: 'Demo',
+  components: {},
   setup() {
     const router = useRouter();
     console.log(123);

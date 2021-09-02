@@ -12,6 +12,9 @@ import { computed, defineComponent } from 'vue';
 import BarLoading from './BarLoading';
 export default defineComponent({
   name: 'LoadingAnimation',
+  components: {
+    BarLoading,
+  },
   props: {
     class: {
       type: String,
@@ -25,9 +28,6 @@ export default defineComponent({
       type: String,
       default: 'loading...',
     },
-  },
-  components: {
-    BarLoading,
   },
   setup(props) {
     const animationClassName = computed(() => ['app-loading-animation', props.class]);

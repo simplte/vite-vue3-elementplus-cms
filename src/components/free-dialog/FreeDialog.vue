@@ -7,8 +7,8 @@
     :close-on-click-modal="onCloseModal"
   >
     <slot></slot>
-    <template v-slot:footer>
-      <span class="dialog-footer" v-if="showFooterButton">
+    <template #footer>
+      <span v-if="showFooterButton" class="dialog-footer">
         <el-button icon="el-icon-circle-close" @click="onCancel">{{ cancelText }}</el-button>
         <el-button icon="el-icon-circle-check" type="primary" @click="onConfirm">
           {{ confirmText }}
@@ -24,8 +24,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FreeDialog',
-
-  emits: ['onConfirm', 'onCancel', 'onClose'],
 
   props: {
     width: {
@@ -53,6 +51,8 @@ export default defineComponent({
       default: true,
     },
   },
+
+  emits: ['onConfirm', 'onCancel', 'onClose'],
 
   setup(props, { emit }) {
     const onConfirm = () => emit('onConfirm');
