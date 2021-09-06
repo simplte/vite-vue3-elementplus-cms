@@ -8,7 +8,7 @@ module.exports = {
         style: false,
       },
     ],
-    function() {
+    function () {
       return {
         visitor: {
           MetaProperty(path) {
