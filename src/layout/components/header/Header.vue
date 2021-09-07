@@ -41,7 +41,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import FullScreen from '@/components/free-fullscreen';
-// import { getUserInfo as getUserInfoApi } from '@/api/user/index';
+import { getUserInfo as getUserInfoApi } from '@/api/user/index';
 
 export default defineComponent({
   name: 'AppHeader',
@@ -60,18 +60,13 @@ export default defineComponent({
     });
     const getUserInfo = async () => {
       try {
-        // const result = await getUserInfoApi();
-        // if (result && result.code === 0 && result.data) {
-        const { userName = '', headThumb = '' } = {
-          userName: 'demo',
-          headThumb: '',
-        };
-        userInfo.userName = userName;
-        userInfo.userAvatar =
-          headThumb ||
-          `https://baike.baidu.com/pic/%E5%8D%A1%E5%93%87%E4%BC%8A/772334/0/a2cc7cd98d1001e9d4b8a477b10e7bec55e797c6?fr=lemma&ct=single#aid=0&pic=a2cc7cd98d1001e9d4b8a477b10e7bec55e797c6`;
-        // store.dispatch('user/setUserInfo', userInfo);
-        // }
+        const result = await getUserInfoApi();
+        if (result && result.code === 0 && result.data) {
+          const { userName = '', headThumb = '' } = result.data;
+          userInfo.userName = userName;
+          userInfo.userAvatar = headThumb;
+          // store.dispatch('user/setUserInfo', userInfo);
+        }
       } catch (error) {
         console.log('error', error);
       }
@@ -97,10 +92,10 @@ export default defineComponent({
   background-color: var(--layout-header-bg);
 
   .label {
-    margin-right: 50px;
     height: 32px;
-    text-align: center;
+    margin-right: 50px;
     line-height: 32px;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -110,8 +105,8 @@ export default defineComponent({
 
   &-logo {
     position: relative;
-    overflow: hidden;
     margin-right: 73px;
+    overflow: hidden;
 
     a {
       display: flex;
@@ -160,13 +155,13 @@ export default defineComponent({
     }
 
     .el-dropdown {
-      color: #fff;
       height: 100%;
       line-height: inherit;
+      color: #fff;
 
       .el-avatar {
-        vertical-align: -0.6em;
         margin-right: 0.5em;
+        vertical-align: -0.6em;
       }
     }
   }
@@ -174,9 +169,9 @@ export default defineComponent({
 
 .app-fixed-header {
   position: fixed;
-  width: 100%;
-  min-width: 1080px;
   top: 0;
   z-index: 2000;
+  width: 100%;
+  min-width: 1080px;
 }
 </style>

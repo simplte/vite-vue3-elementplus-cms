@@ -7,8 +7,10 @@ import legacyPlugin from '@vitejs/plugin-legacy';
 import { svgBuilder } from '../../svgBuilder';
 import { configHmrPlugin } from './hmr';
 import { configHtmlPlugin } from './html';
+import { configMockPlugin } from './mock';
 
-export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
+export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
+  const { VITE_USE_MOCK: shouldUseMock } = viteEnv;
   const vitePlugins: (Plugin | Plugin[])[] = [
     // 必须
     vue(),
@@ -28,6 +30,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild) {
   ];
   // 配置 HMR 插件
   !isBuild && vitePlugins.push(configHmrPlugin());
+  // vite-plugin-mock
+  shouldUseMock && vitePlugins.push(configMockPlugin(isBuild));
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
   return vitePlugins;
