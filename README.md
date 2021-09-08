@@ -368,3 +368,329 @@ module.exports = {
 ```
 
 **至此自动格式化样式与格式预提交格式检查就 ok 了**
+
+### vue3 中配置`jest`单元测试
+
+- 安装对应版本的依赖
+
+```
+"@types/jest": "^27.0.1",
+"@vue/test-utils": "^2.0.0-rc.9",
+"babel-jest": "^27.1.0",
+"eslint-plugin-jest": "^24.4.0",
+"jest": "^27.1.0",
+"ts-jest": "^27.0.5",
+"vue-jest": "^5.0.0-alpha.10",
+```
+
+```
+装依赖时  @vue/test-utils 装的版本不是最新的版本一直包vue-complier 编译器的错误
+Cannot find module 'vue-template-compiler' from 'node_modules/_@vue_test-utils@1.2.2@@vue/test-utils/dist/vue-test-utils.js'
+```
+
+- 装完依赖后需要执行`ts-jest`命令生成 `jest.config.js` 文件
+
+```
+npx ts-jest config:init
+
+在jset.config.js中配置对应的测试环境
+
+
+```
+
+- 相关文档
+
+```
+https://zhuanlan.zhihu.com/p/282835230
+```
+
+- 创建单元测试方法
+
+```
+describe  功能描述
+expect 运行结果
+toBe   期望结果  也叫断言
+
+describe('对象测试', () => {
+
+    it("是否同一个对象", () => {
+        const foo = { a: 1 }
+        expect(foo).toBe(foo)
+    })
+
+    it("对象值是否相等", () => {
+        expect({ a: 1, foo: { b: 2 } }).toEqual({ a: 1, foo: { b: 2 } })
+    })
+
+    test('对象赋值', () => {
+        const data = { one: 1 };
+        data['two'] = 2;
+        expect(data).toEqual({ one: 1, two: 2 });
+    });
+
+});
+
+异步测试 通过设置done形参
+it('异步测试', (done) => {
+    function bar() {
+        console.log('bar..')
+        done();
+    }
+    foo(bar);
+});
+
+```
+
+- 异步测试
+
+```
+describe('异步测试', () => {
+    jest.useFakeTimers();
+    function foo(callback) {
+        console.log('foo...')
+        setTimeout(()=> {
+            callback && callback()
+        },1000)
+    }
+    it('断言异步测试', () => {
+    //创建mock函数，用于断言函数被执行或是执行次数的判断
+        const callback =jest.fn();
+        foo(callback);
+        except(callback).not.toBeCalled();
+        //快进，使所有定时器回调
+        jest.runAllTimers();
+        expect(callback).toBelCalled();
+
+    })
+})
+
+```
+
+- dom 渲染测试
+
+```
+describe('Dom测试', () => {
+    it('测试按钮是否被渲染 ', () => {
+        document.body.innerHTML = `
+    <div>
+        <button id='btn'>小按钮</button>
+    </div> `
+        console.log(document.getElementById('btn'), document.getElementById('btn').toString())
+        expect(document.getElementById('btn')).not.toBeNull();
+        expect(document.getElementById('btn').toString()).toBe("[object HTMLButtonElement]");
+    });
+
+    it('测试点击事件', () => {
+        const onclick = jest.fn();
+        document.body.innerHTML = `
+        <div>
+            <button id='btn'>小按钮</button>
+        </div> `
+        const btn = document.getElementById('btn');
+        // 确保事件没有被调用
+        expect(onclick).not.toBeCalled();
+        btn.onclick = onclick;
+        btn.click();
+        // 确保时间被调用了
+        expect(onclick).toBeCalled();
+        <!-- 确保事件被调用的次数是否是（）中的值 -->
+        expect(onclick).toHaveBeenCalledTimes(1);
+        btn.click();
+        btn.click();
+        expect(onclick).toHaveBeenCalledTimes(3);
+    });
+});
+```
+
+- vue 测试
+
+```
+1：mount shallowMount 的区别
+mount 挂载所有子组件
+shallowMount 挂载当前组件
+```
+
+1. vue 组件渲染测试
+
+```
+it("挂载btn测试",()=> {
+    const wraper = shallowMount(CountBtn);
+    const btn = wraper.find("btn");
+    expect(wraper.html()).toBe(`<button>点击次数0</button>`)
+})
+```
+
+2. 点击事件测试
+
+```
+it('优雅的测试点击事件', async () => {
+    const wraper = shallowMount(CountBtn);
+    const btn = wraper.find("button");
+    expect(wraper.html()).toBe(`<button>点击次数0</button>`);
+    btn.trigger('click');
+    await wraper.vm.$nextTick();
+    expect(wraper.html()).toBe(`<button>点击次数1</button>`);
+});
+```
+
+3. axios 异步请求测试
+
+```
+<!-- User.vue -->
+<template>
+<table>
+    <tr v-for="item in list" :key="item.id">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.age}}</td>
+    </tr>
+</table>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            list: []
+        }
+    },
+    created() {
+        this.$http.get('/user').then(({
+            data
+        }) => {
+            this.list = data
+        })
+    }
+}
+</script>
+// User.spec.js
+import { mount } from '@vue/test-utils';
+import User from '@/components/User';
+
+it('测试用户组件', async() => {
+    const wrapper = mount(User,{
+        mocks:{
+            $http:{
+                get: url=>Promise.resolve({data:[{id:1,name:'xxxx',age:18},{id:2,name:'yyyy',age:19}]})
+            }
+        }
+    })
+    console.log(wrapper.html())
+    // 渲染前
+    expect(wrapper.html()).toBe('<table></table>');
+    await wrapper.vm.$nextTick();
+    // 渲染后
+    // console.log(wrapper.html())
+    // console.log(wrapper.find('tr'))
+    expect(wrapper.findAll('tr').length).toBe(2)
+    expect(wrapper.findAll('td').at(2).html()).toBe('<td>18</td>')
+
+});
+
+```
+
+---
+
+- 常见的命令：
+
+```
+ "nocache": "jest --no-cache", //清除缓存
+  "watch": "jest --watchAll", //实时监听
+  "coverage": "jest --coverage",  //生成覆盖测试文档
+  "verbose": "npx jest --verbose" //显示测试描述
+```
+
+#### mock 插件集成
+
+- 安装的插件
+
+```
+<!--生产依赖-->
+"mockjs": "^1.1.0",
+"lodash-es": "^4.17.21",
+<!--开发依赖-->
+"vite-plugin-mock": "^2.9.4",
+"@types/lodash-es": "^4.17.4",
+"babel-plugin-lodash": "^3.3.4"
+```
+
+- 根路径创建`mock`文件夹
+
+```
+1:创建测试文件模块文件夹
+ex:
+mock->user
+import { MockMethod } from 'vite-plugin-mock';
+export default [
+  // mock userInfo
+  {
+    url: '/api/v1/userInfo',
+    timeout: 200,
+    method: 'get',
+    response: ({ body }) => {
+      console.log('body', body);
+      return {
+        code: 0,
+        message: 'OK',
+        data: {
+          userName: 'admin',
+          headThumb: 'https://lupic.cdn.bcebos.com/20200412/3024701264_14_747_533.jpg',
+        },
+      };
+    },
+  },
+] as MockMethod[];
+
+------------------
+mock -> _createMockServer.ts
+
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
+
+const modules = import.meta.globEager('./**/*.ts');
+
+const mockModules: any[] = [];
+Object.keys(modules).forEach((key) => {
+  if (key.includes('/_')) {
+    return;
+  }
+  mockModules.push(...modules[key].default);
+});
+
+/**
+ * Used in a production environment. Need to manually import all modules
+ */
+export function setupProdMockServer() {
+  createProdMockServer(mockModules);
+}
+
+```
+
+- vite 配置
+
+```
+import { viteMockServe } from 'vite-plugin-mock';
+
+export function configMockPlugin(isBuild: boolean) {
+<!--创建mock服务器配置-->
+  return viteMockServe({
+    // eslint-disable-next-line no-useless-escape
+    ignore: /^\_/,
+    mockPath: 'mock',
+    localEnabled: !isBuild,
+    prodEnabled: isBuild,
+    <!--injectCode代码注入的文件-->
+    injectCode: `
+       import { setupProdMockServer } from '../mock/_createProductionServer';
+
+       setupProdMockServer();
+       `,
+  });
+}
+
+```
+
+- vite 插件挂载 `vite.config.js`
+
+```
+plugins: createVitePlugins(viteEnv, isBuild),
+```
