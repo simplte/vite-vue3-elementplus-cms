@@ -694,3 +694,119 @@ export function configMockPlugin(isBuild: boolean) {
 ```
 plugins: createVitePlugins(viteEnv, isBuild),
 ```
+
+### `eslint` `prettier`格式化`ts`及`vue`代码
+
+1. 插件安装
+
+```
+1：必装插件
+"prettier": "^2.3.2",
+"eslint": "^7.32.0",
+2：对ts语法检查支持
+"@typescript-eslint/eslint-plugin": "^4.30.0",
+"@typescript-eslint/parser": "^4.30.0",
+3：eslint与prettier语法冲突时需要安装以下插件
+"eslint-config-prettier": "^8.3.0",
+4：eslint-plugin-prettier 插件会调用 prettier对你的代码风格进行检查，其原理是先使用 prettier对你的代码进行格式化，然后与格式化之前的代码进行对比，如果过出现了不一致，这个地方就会被 prettier进行标记。
+"eslint-plugin-prettier": "^3.4.0",
+
+5：支持vue文件eslint语法检查
+"eslint-plugin-vue": "^7.17.0",
+6：如果需要支持对jest的支持需要安装
+"eslint-plugin-jest": "^24.4.0",
+
+```
+
+2. `.eslint.js`
+
+```
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
+    <!--有些配置中使用 prettier/@typescript-eslint 作用使得@typescript-eslint中的样式规范失效，遵循prettier中的样式规范-->
+    'prettier',
+    <!--使用prettier中的样式规范，且如果使得ESLint会检测prettier的格式问题，同样将格式问题以error的形式抛出-->
+    'plugin:prettier/recommended',
+  ],
+  // 解析器
+  // eslint-plugin-vue 里的大多数规则都需要 vue-eslint-parser 来解析 template 的AST， 然而 babel-eslint 和 vue-eslint-parser 在解析上有冲突，解决办法是把 "parser": "babel-eslint", 移入到 parserOptions 内。
+  // 本项目需要对ts支持，所以需要@typescript-eslint/parser 来负责ts的语法检查
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: 'module', // Allows for the use of imports
+    ecmaFeatures: {
+      jsx: true, // Allows for the parsing of JSX
+    },
+    parser: '@typescript-eslint/parser',
+    extraFileExtensions: ['.vue'],
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-param-reassign': ['warn', { props: false }],
+    '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
+};
+
+```
+
+3. `.prettire.config.js`
+
+```
+module.exports = {
+  // ES5中有效的结尾逗号（对象，数组等）
+  trailingComma: 'es5',
+  // 不使用缩进符，而使用空格
+  useTabs: false,
+  // tab 用两个空格代替
+  tabWidth: 2,
+  // 添加分号
+  semi: true,
+  // 使用单引号
+  singleQuote: true,
+  // 一行最多 100 字符
+  printWidth: 100,
+  // 对象的 key 仅在必要时用引号
+  quoteProps: 'as-needed',
+  // jsx 不使用单引号，而使用双引号
+  jsxSingleQuote: false,
+  // 大括号内的首尾需要空格
+  bracketSpacing: true,
+  // jsx 标签的反尖括号需要换行
+  jsxBracketSameLine: false,
+  // 箭头函数，只有一个参数的时候，也需要括号
+  arrowParens: 'always',
+  // 每个文件格式化的范围是文件的全部内容
+  rangeStart: 0,
+  rangeEnd: Infinity,
+  // 不需要写文件开头的 @prettier
+  requirePragma: false,
+  // 不需要自动在文件开头插入 @prettier
+  insertPragma: false,
+  // 使用默认的折行标准
+  proseWrap: 'preserve',
+  // 换行符使用 lf
+  endOfLine: 'lf',
+  /* 优化html闭合标签不换行的问题 */
+  htmlWhitespaceSensitivity: 'ignore',
+};
+
+```
