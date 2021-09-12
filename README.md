@@ -9,8 +9,8 @@
 - sass done
 - vue-router done
 - vuex done
-- mock
-- jest
+- mock done
+- jest done
 - eslint+prettier+stylelint done
 - husky done
 - ...
@@ -813,8 +813,10 @@ module.exports = {
 
 ### 搭建项目时 项目中的一些问题解决方案
 
+1.通过路径别名引入组件时会报错
+
 ```
-1：通过路径别名引入组件时会报错
+
 Cannot find module ‘‘store/index’ or its corresponding type declarations.Vetur(2307)
 
 解决办法：
@@ -832,9 +834,43 @@ alias:{
 3: 使用vscode单独打开项目
 因为vetur只会在当前项目根据路径下去寻找tsconfog.json的配置
 
-2：切换边栏路径时
+
+```
+
+2. 切换边栏路径时
+
+```
 控制台会报
 props attributes (class) were passed to component but could not be automatically inherited because component renders fragment or text root nodes.
 找了下解决方案
 将BasicLayout.vue中 view-router的app-container样式去掉
+```
+
+3. 解决编译时 sass 报错的问题
+
+```
+因为Dart sass 新版本目弃用“/”的用法，sass自定义element theme时会报warnning
+
+解决方式：
+1：npm install -g sass-migrator
+2：进入项目node_modules文件
+执行sass-migrator division **/*.scss
+
+我参照上面这个方式执行上述命令时没有任何响应
+
+然后尝试更新了sass的版本 然后报错解决，最后确定解决办法时更新sass版本
+这是找的类似问题的方案：
+change "sass": "^1.33.0", to "sass": "1.32.13", in package.json.
+delete package-lock.json
+delete node_modules folder
+
+我更新了一下sass版本然后就好了
+cnpm i -D sass@1.32.12
+
+最终解决办法：
+cnpm i 之后
+启动还是会有一样的报错
+然后又执行了
+cnpm i -D sass@1.32.12
+问题解决
 ```
