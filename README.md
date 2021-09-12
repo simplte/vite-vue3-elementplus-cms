@@ -810,3 +810,31 @@ module.exports = {
 };
 
 ```
+
+### 搭建项目时 项目中的一些问题解决方案
+
+```
+1：通过路径别名引入组件时会报错
+Cannot find module ‘‘store/index’ or its corresponding type declarations.Vetur(2307)
+
+解决办法：
+1:在tsconfig.json中配置
+'baserUrl': './',
+ "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+2:vite.config.js中增加
+alias:{
+  '@': resolve(__dirname, 'src'),
+};
+3: 使用vscode单独打开项目
+因为vetur只会在当前项目根据路径下去寻找tsconfog.json的配置
+
+2：切换边栏路径时
+控制台会报
+props attributes (class) were passed to component but could not be automatically inherited because component renders fragment or text root nodes.
+找了下解决方案
+将BasicLayout.vue中 view-router的app-container样式去掉
+```

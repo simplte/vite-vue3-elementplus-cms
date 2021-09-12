@@ -7,7 +7,7 @@
         <div class="app-layout">
           <app-breadcrumb />
           <section class="app-content">
-            <router-view class="app-container" />
+            <router-view />
           </section>
           <app-footer />
         </div>
