@@ -874,3 +874,20 @@ cnpm i 之后
 cnpm i -D sass@1.32.12
 问题解决
 ```
+
+4. 困扰了一个多月的问题，
+
+```
+用了elementui form之后拷贝官网demo form例子到项目中
+切换路由就报
+Uncaught (in promise) TypeError: Cannot read property 'exposed' of null
+路由切换了页面也不更新
+
+百度了很久没找到答案，
+最后在自己搭建的另外一个项目中试了相同的例子不报错，就很郁闷
+然后尝试把项目中直接挂载路由还是没有用，
+然后吧问题锁定在页面代码中，删掉form中的一些数据 问题解决了，不知道是不是数据定义的不满足element的规范报错的
+
+1：明天尝试更新elementui的版本试下是不是问题能够解决
+
+```

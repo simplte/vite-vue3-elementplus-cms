@@ -20,7 +20,7 @@ export default defineComponent({
     console.log(123);
     ElMessage.warning('waring');
     const jumpForm = () => {
-      router.push('/demo/form');
+      router.push('/demoForm');
     };
     let testData = ref<TestInter>({ name: 'ccc demo' });
     return {

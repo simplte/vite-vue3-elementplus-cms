@@ -1,6 +1,6 @@
 import BasicLayout from '@/layout/BasicLayout.vue';
 import { AppRouteRecordRaw } from '../types';
-
+import { createAsyncComponent } from '@/utils/tools/createAsyncComponent';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const DemoRoutes: AppRouteRecordRaw[] = [
   {
@@ -17,7 +17,7 @@ export const DemoRoutes: AppRouteRecordRaw[] = [
         path: 'table',
         name: 'DemoTable',
         meta: { title: '案例表格' },
-        component: () => import('@/views/demo/demoTable.vue'),
+        component: createAsyncComponent(() => import('@/views/demo/demoTable.vue')),
       },
       {
         path: 'form',

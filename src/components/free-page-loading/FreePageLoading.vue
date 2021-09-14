@@ -7,11 +7,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent } from 'vue';
-import BarLoading from './BarLoading';
+import BarLoading from './BarLoading.vue';
 export default defineComponent({
-  name: 'LoadingAnimation',
+  name: 'PageLoading',
   components: {
     BarLoading,
   },
@@ -26,7 +26,7 @@ export default defineComponent({
     },
     text: {
       type: String,
-      default: 'loading...',
+      default: '',
     },
   },
   setup(props) {

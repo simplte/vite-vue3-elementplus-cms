@@ -18,10 +18,6 @@ declare global {
     };
     lastBuildTime: string;
   };
-  // declare interface Window {
-  //   // Global vue app instance
-  //   __APP__: App<Element>;
-  // }
 
   // vue
   declare type PropType<T> = VuePropType<T>;
@@ -31,9 +27,10 @@ declare global {
     -readonly [P in keyof T]: T[P];
   };
 
+  declare type TargetContext = '_self' | '_blank';
   declare type Nullable<T> = T | null;
   declare type NonNullable<T> = T extends null | undefined ? never : T;
-  declare type Recordable<T = any> = Record<string, T>;
+  declare type Recordable<T extends any = any> = Record<string, T>;
   declare type ReadonlyRecordable<T = any> = {
     readonly [key: string]: T;
   };
@@ -45,6 +42,10 @@ declare global {
   };
   declare type TimeoutHandle = ReturnType<typeof setTimeout>;
   declare type IntervalHandle = ReturnType<typeof setInterval>;
+
+  declare interface Fn<T = any, R = T> {
+    (...arg: T[]): R;
+  }
 
   declare interface ChangeEvent extends Event {
     target: HTMLInputElement;
@@ -78,6 +79,7 @@ declare global {
 
   declare function parseFloat(string: string | number): number;
 
+  // JSX
   namespace JSX {
     // tslint:disable no-empty-interface
     type Element = VNode;

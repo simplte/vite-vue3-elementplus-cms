@@ -22,10 +22,10 @@ export default defineComponent({
     ElMessage.warning('waring');
     const jumpTable = () => {
       console.log('table');
-      router.push('/demo/table');
+      router.push('/demoTable');
     };
     const jumpForm = () => {
-      router.push('/demo/form');
+      router.push('/demoForm');
     };
     let testData = ref<TestInter>({ name: 'ccc demo' });
     return {
