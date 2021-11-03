@@ -4,7 +4,7 @@ import App from './App.vue';
 import { setupStore } from './store';
 import router, { setupRouter } from './router';
 import { setupElement, setupComponents } from './plugins/index';
-
+const data = 123;
 const app = createApp(App);
 (window as any).global = window;
 function bootstrap(app) {
