@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+
 import { OptionItem } from './type';
 
 export default defineComponent({

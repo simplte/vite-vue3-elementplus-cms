@@ -9,7 +9,9 @@
 
 <script lang="tsx">
 import { defineComponent, ref } from 'vue';
+
 import FreeTable from '@/components/free-table';
+
 import tableData from './tableData';
 
 export default defineComponent({

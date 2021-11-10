@@ -9,7 +9,9 @@
 
 <script lang="tsx">
 import { defineComponent, ref } from 'vue';
+
 import FreeTable from '@/components/free-table';
+
 import tableData from './tableData';
 
 export default defineComponent({
@@ -83,8 +85,8 @@ export default defineComponent({
 }
 
 .demo-table-expand .el-form-item {
+  width: 50%;
   margin-right: 0;
   margin-bottom: 0;
-  width: 50%;
 }
 </style>

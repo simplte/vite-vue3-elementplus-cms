@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+
 import BarLoading from './BarLoading.vue';
 export default defineComponent({
   name: 'PageLoading',
@@ -62,25 +63,25 @@ $primary-lightener-extra: lighten($primary, 35%);
 $primary-darken: darken($primary, 8%);
 
 .app-loading-animation {
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  transform: translate3d(0, 0, 0);
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 999;
+  transform: translate3d(0, 0, 0);
 
   &::after {
-    content: '';
     position: fixed;
-    left: 0;
     top: 0;
-    bottom: 0;
     right: 0;
-    background-color: $body-background;
-    opacity: 0.5;
-    filter: blur(2px);
+    bottom: 0;
+    left: 0;
     z-index: -1;
+    content: '';
+    background-color: $body-background;
+    filter: blur(2px);
+    opacity: 0.5;
   }
 
   &.app-loading-hide {
@@ -90,15 +91,15 @@ $primary-darken: darken($primary, 8%);
   }
 
   &.app-loading-fixed {
-    left: 220px;
-    top: $app-layout-header-height;
-    bottom: 0;
-    right: 0;
     position: fixed;
+    top: $app-layout-header-height;
+    right: 0;
+    bottom: 0;
+    left: 220px;
 
     &.app-loading-collapsed {
-      transition: none;
       left: $app-layout-menu-collapsed-width;
+      transition: none;
     }
   }
 
@@ -106,18 +107,18 @@ $primary-darken: darken($primary, 8%);
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-flow: column;
     align-items: center;
+    transform: translate(-50%, -50%);
 
     .app-loading-content-text {
       display: block;
       margin-top: 20px;
       font-size: 14px;
       color: $primary;
-      letter-spacing: 2px;
       text-align: center;
+      letter-spacing: 2px;
     }
   }
 }

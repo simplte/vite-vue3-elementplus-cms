@@ -16,9 +16,10 @@
 </template>
 
 <script lang="tsx">
-import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
-import FreeTable from '@/components/free-table';
 import axios from 'axios';
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
+
+import FreeTable from '@/components/free-table';
 
 export default defineComponent({
   components: {

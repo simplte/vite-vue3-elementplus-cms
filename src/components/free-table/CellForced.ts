@@ -1,6 +1,6 @@
-import { h } from 'vue';
 import ElCheckbox from 'element-plus/lib/el-checkbox';
 import { AnyObject, Store, TableColumnCtx } from 'element-plus/lib/el-table/src/table.type';
+import { h } from 'vue';
 
 // 这些选项不应该被覆盖
 // eslint-disable-next-line @typescript-eslint/naming-convention

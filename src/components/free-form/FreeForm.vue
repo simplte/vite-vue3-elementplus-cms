@@ -40,11 +40,12 @@
 </template>
 
 <script lang="ts">
+import ElForm from 'element-plus/lib/el-form';
 import { computed, defineComponent, PropType, ref, unref, watchEffect } from 'vue';
+
+import FreeCheckbox from './FreeCheckbox.vue';
 import FreeRadio from './FreeRadio.vue';
 import FreeSelect from './FreeSelect.vue';
-import FreeCheckbox from './FreeCheckbox.vue';
-import ElForm from 'element-plus/lib/el-form';
 
 export type Data = { [key: string]: unknown };
 

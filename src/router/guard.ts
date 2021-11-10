@@ -1,5 +1,5 @@
-import { Router } from 'vue-router';
 import NProgress from 'nprogress';
+import { Router } from 'vue-router';
 
 /**
  * 切换路由时，页面进度条效果

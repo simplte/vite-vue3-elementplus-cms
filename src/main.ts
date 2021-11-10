@@ -1,9 +1,11 @@
 import './styles/main.scss';
+
 import { createApp } from 'vue';
+
 import App from './App.vue';
-import { setupStore } from './store';
+import { setupComponents, setupElement } from './plugins/index';
 import router, { setupRouter } from './router';
-import { setupElement, setupComponents } from './plugins/index';
+import { setupStore } from './store';
 const data = 123;
 const app = createApp(App);
 (window as any).global = window;

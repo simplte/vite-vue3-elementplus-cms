@@ -43,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import FreeIcon from '../FreeIcon.vue';
 
 const icons: string[] = [];
@@ -86,26 +87,26 @@ export default defineComponent({
 .icon-list {
   display: flex;
   flex-wrap: wrap;
+  padding: 0 !important;
   overflow: hidden;
   list-style: none;
-  padding: 0 !important;
   border: 1px solid #eaeefb;
   border-radius: 4px;
 }
 
 .icon-list li {
   display: flex;
+  flex-basis: 10.051%;
   align-items: center;
   justify-content: center;
-  flex-basis: 10.051%;
-  text-align: center;
   height: 120px;
-  color: #666;
-  font-size: 13px;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
   margin-right: -1px;
   margin-bottom: -1px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .icon-list li:nth-child(10n) {
@@ -114,16 +115,16 @@ export default defineComponent({
 
 .icon-list li .free-icon {
   display: block;
-  font-size: 20px;
   margin-bottom: 10px;
+  font-size: 20px;
   color: #606266;
   transition: color 0.15s linear;
 }
 
 .icon-list li .icon-name {
   display: block;
-  padding: 0 3px;
   height: 1em;
+  padding: 0 3px;
 }
 
 .icon-list li span {

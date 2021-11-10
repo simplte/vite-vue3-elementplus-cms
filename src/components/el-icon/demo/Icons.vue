@@ -43,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import FreeIcon from '../index.vue';
 
 const icons: string[] = [];

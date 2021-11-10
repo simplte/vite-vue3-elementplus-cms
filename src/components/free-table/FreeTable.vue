@@ -29,7 +29,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
+
 import FreePagination from '@/components/free-pagination';
+
 import FreeColumn from './FreeColumn.vue';
 
 export interface ColumnItem {

@@ -13,7 +13,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+
 import FreeRender from '@/components/free-render';
+
 import { OptionItem } from './type';
 
 export default defineComponent({

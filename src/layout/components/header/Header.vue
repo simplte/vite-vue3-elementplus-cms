@@ -40,8 +40,9 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
-import FullScreen from '@/components/free-fullscreen';
+
 import { getUserInfo as getUserInfoApi } from '@/api/user/index';
+import FullScreen from '@/components/free-fullscreen';
 
 export default defineComponent({
   name: 'AppHeader',

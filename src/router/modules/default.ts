@@ -1,4 +1,5 @@
 import BasicLayout from '@/layout/BasicLayout.vue';
+
 import { AppRouteRecordRaw } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

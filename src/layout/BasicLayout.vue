@@ -18,11 +18,13 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+
 import { useStore } from '@/store';
-import AppHeader from './components/header/Header.vue';
-import AppFooter from './components/footer/Footer.vue';
-import AppSiderbar from './components/siderbar/Siderbar.vue';
+
 import AppBreadcrumb from './components/breadcrumb/Breadcrumb.vue';
+import AppFooter from './components/footer/Footer.vue';
+import AppHeader from './components/header/Header.vue';
+import AppSiderbar from './components/siderbar/Siderbar.vue';
 
 export default defineComponent({
   name: 'BasicLayout',

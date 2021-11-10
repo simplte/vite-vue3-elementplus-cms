@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+
 import SvgIcon from './SvgIcon.vue';
 
 /**
@@ -91,10 +92,10 @@ export default defineComponent({
   }
 
   svg.svg-icon {
-    fill: currentColor;
     width: 1.4em;
     height: 1.4em;
     vertical-align: middle;
+    fill: currentColor;
   }
 }
 </style>

@@ -891,3 +891,18 @@ Uncaught (in promise) TypeError: Cannot read property 'exposed' of null
 1：明天尝试更新elementui的版本试下是不是问题能够解决
 
 ```
+
+### 增加导入模板自动格式化的 eslint 插件
+
+```
+cnpm i -D eslint-plugin-simple-import-sort
+
+在.eslintrc.js中增加配置
+"plugins": ["simple-import-sort"],
+
+增加rules
+"simple-import-sort/imports": "error",
+"simple-import-sort/exports": "error"
+
+完美处理模块导入的格式规则
+```

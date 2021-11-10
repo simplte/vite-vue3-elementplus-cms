@@ -13,7 +13,7 @@
       :row="formQuery.row"
     >
       <template #buttons>
-        <div style="text-align: right; margin-left: 10px">
+        <div style="margin-left: 10px; text-align: right">
           <el-button type="success" icon="el-icon-edit" @click="setQuery">查询</el-button>
           <el-button type="warning" icon="el-icon-download">导出</el-button>
         </div>
@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+
 import FreeForm from '@/components/free-form';
 
 export default defineComponent({

@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref, onMounted, watch } from 'vue';
-import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import { compile } from 'path-to-regexp';
+import { defineComponent, onMounted, Ref, ref, watch } from 'vue';
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 
 export type RouteProps =
   | RouteRecordRaw
@@ -82,10 +82,10 @@ export default defineComponent({
 <style lang="scss">
 .app-breadcrumb.el-breadcrumb {
   display: inline-block;
+  padding: 10px 24px;
   font-size: 14px;
   font-weight: normal;
   line-height: 30px;
-  padding: 10px 24px;
 
   &:first-child {
     .el-breadcrumb__inner a {
@@ -95,10 +95,10 @@ export default defineComponent({
   }
 
   .no-redirect {
-    cursor: text;
     font-size: 16px;
     font-weight: 700;
     color: var(--color-title-black);
+    cursor: text;
   }
 }
 </style>

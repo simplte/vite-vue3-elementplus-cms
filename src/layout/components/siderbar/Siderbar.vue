@@ -33,9 +33,11 @@
 <script>
 import { computed, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+
+import { routes } from '@/router';
 import { useStore } from '@/store';
 import { AppActionTypes } from '@/store/modules/app/action-types';
-import { routes } from '@/router';
+
 import SiderbarItem from './SiderbarItem.vue';
 import { transformRouteMenu } from './utils/helper';
 
@@ -106,8 +108,8 @@ export default defineComponent({
   &-links {
     box-sizing: border-box;
     width: 100%;
-    padding: 0 16px;
     height: 45px;
+    padding: 0 16px;
     margin-bottom: 100px;
 
     .arc-bg {
@@ -122,23 +124,25 @@ export default defineComponent({
         top: 0;
         bottom: 0;
         left: 3px;
-        margin: auto 0;
         width: 32px;
         height: 32px;
+        margin: auto 0;
         line-height: 32px;
         text-align: center;
-        border-radius: 50%;
-        background: #bfdbf7;
         cursor: pointer;
+        background: #bfdbf7;
+        border-radius: 50%;
 
         [class^='el-icon-'] {
           font-size: 10px;
           color: var(--color-primary);
           transition: 0.3s;
         }
+
         &:hover .el-icon-d-arrow-left {
           transform: translate(-2px);
         }
+
         &:hover .el-icon-d-arrow-right {
           transform: translate(2px);
         }
@@ -174,11 +178,11 @@ export default defineComponent({
       background: #fff !important;
 
       &::before {
-        content: '';
         position: absolute;
-        height: 100%;
         left: 0;
         width: 4px;
+        height: 100%;
+        content: '';
         background-color: rgba(var(--color-primary-rgb), 1);
       }
     }

@@ -30,7 +30,9 @@
 
 <script>
 import { defineComponent, watchEffect } from 'vue';
+
 import FreeRender from '@/components/free-render';
+
 import CellForced from './CellForced';
 import FreeButton from './FreeButton.vue';
 export default defineComponent({

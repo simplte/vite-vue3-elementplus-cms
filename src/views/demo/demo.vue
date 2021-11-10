@@ -6,8 +6,8 @@
   <div @click="jumpForm()">form</div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
 import { ElMessage } from 'element-plus';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 export interface TestInter {
   name: string;

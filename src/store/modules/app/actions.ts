@@ -1,9 +1,11 @@
 import { ActionContext, ActionTree } from 'vuex';
-import { Mutations } from './mutations';
-import { AppMutationTypes } from './mutation-types';
-import { AppActionTypes } from './action-types';
-import { State } from './state';
+
 import { RootState } from '@/store';
+
+import { AppActionTypes } from './action-types';
+import { AppMutationTypes } from './mutation-types';
+import { Mutations } from './mutations';
+import { State } from './state';
 
 type ActionAugents = Omit<ActionContext<State, RootState>, 'commit'> & {
   commit<K extends keyof Mutations>(

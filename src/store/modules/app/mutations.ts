@@ -1,4 +1,5 @@
 import { MutationTree } from 'vuex';
+
 import { AppMutationTypes } from './mutation-types';
 import { State } from './state';
 

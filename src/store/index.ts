@@ -1,7 +1,8 @@
 import { App } from 'vue';
-import { createStore, createLogger } from 'vuex';
+import { createLogger, createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import { store as app, AppStore, State as AppState } from '@/store/modules/app';
+
+import { AppStore, State as AppState, store as app } from '@/store/modules/app';
 
 export interface RootState {
   app: AppState;

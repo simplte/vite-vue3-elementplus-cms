@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 import { useFullscreen } from '@vueuse/core';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FreeFullscreen',

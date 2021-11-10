@@ -9,7 +9,9 @@
 
 <script lang="ts">
 import { defineComponent, markRaw, ref } from 'vue';
+
 import FreeTable from '@/components/free-table';
+
 import EditBtn from './components/EditBtn.vue';
 import tableData from './tableData';
 

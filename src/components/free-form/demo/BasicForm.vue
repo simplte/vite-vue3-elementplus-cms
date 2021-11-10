@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+
 import FreeForm from '@/components/free-form';
 
 export default defineComponent({
