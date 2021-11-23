@@ -1,9 +1,9 @@
-import type { Plugin } from 'vite';
-import vue from '@vitejs/plugin-vue';
-
-import vueJsx from '@vitejs/plugin-vue-jsx';
 // 兼容传统浏览器
 import legacyPlugin from '@vitejs/plugin-legacy';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import type { Plugin } from 'vite';
+
 import { svgBuilder } from '../../svgBuilder';
 import { configHmrPlugin } from './hmr';
 import { configHtmlPlugin } from './html';
